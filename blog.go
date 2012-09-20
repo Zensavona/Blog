@@ -10,13 +10,27 @@ import (
 	"net/http"
 )
 
-type Post struct {
+type Note struct {
+	Uglyname string
 	Title string
 	Date string
 	Body string
 }
 
 const sep = "---"
+const notePath = "/note/"
+
+var notes = loadNotes()
+
+func loadNotes() []Note {
+	files, _ := ioutil.ReadDir("notes/")
+	var notes []Note
+	for _, file := range files {
+		title := strings.Replace(file.Name(), ".md", "", -1)
+		notes = append(notes, *loadPost(title))
+	}
+	return notes
+}
 
 func getContent(title string) (content string) {
 	filename := title + ".md"
@@ -24,20 +38,19 @@ func getContent(title string) (content string) {
     return string(file)
 }
 
-func loadPost(title string) *Post {
+func loadPost(title string) *Note {
 	content := getContent(title)
-
 	sepLength := len(sep)
     i := strings.LastIndex(content, sep)
     headers := content[sepLength:i]
     body := content[i+sepLength+1:]
     html := blackfriday.MarkdownCommon([]byte(body))
     meta := strings.Split(headers, "\n")
-    return &Post{meta[1], meta[2], string(html)}
+    return &Note{title, meta[1], meta[2], string(html)}
 }
 
 func loadTemplate(name string) string {
-    file, _ := ioutil.ReadFile(name + ".html.moustache")
+    file, _ := ioutil.ReadFile(name + ".html")
     return string(file)
 }
 
@@ -49,6 +62,10 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", noteHandler)
-    http.ListenAndServe(":8080", nil)
+	//http.HandleFunc(notePath, noteHandler)
+	//http.HandleFunc("/", indexHandler)
+    //http.ListenAndServe(":8080", nil)
+    for _, note := range notes {
+    	fmt.Println(note.Uglyname)
+    }
 }

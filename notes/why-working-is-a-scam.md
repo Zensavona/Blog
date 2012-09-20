@@ -1,13 +1,7 @@
 ---
-layout: post
-title: "Why working is a scam"
-description: ""
-category: ramblings
-tags: [startups, ramblings]
+Why working is a scam
+12 June 2012
 ---
-{% include JB/setup %}
-
-
 ### Working a "real" job is a scam.
 
 In Australia, the average life expectency is 81. Let's assume for a moment that a person starts working full time at 21 and retires at 60, this is assuming you are earning an above average salary (the "retirement age" in Australia is actually 65). This means you will work full time for 39 years. If you average 4 full work days per week over your working life, you will have spent just **over 22 years** at work.

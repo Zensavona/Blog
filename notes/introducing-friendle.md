@@ -1,11 +1,7 @@
 ---
-layout: post
-title: "Introducing Friendle"
-description: ""
-category: friendle
-tags: [friendle, startups, development]
+Introducing Friendle
+12 June 2012
 ---
-{% include JB/setup %}
 
 I've been using [alpha.app.net] for the past few days and it has given me so many ideas as to how a social community should function. Particularly the way conversations and user relationships should be handled.
 

@@ -1,11 +1,7 @@
 ---
-layout: post
-title: "Get your shit together, people"
-description: ""
-category: ramblings
-tags: [ramblings, startups]
+Get your shit together, people
+12 June 2012
 ---
-{% include JB/setup %}
 
 > Disclaimer: I live in Brisbane, Australia. My only real window to what is happening in silicon valley is HN and the blogs of various founders and VCs from the valley. If my assumptions are completely wrong, please do let me know.
 

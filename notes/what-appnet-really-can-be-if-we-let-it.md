@@ -1,11 +1,7 @@
 ---
-layout: post
-title: "What App.net really can be (if we let it)"
-description: ""
-category: thoughts
-tags: [thoughts, startups, development]
+What App.net really can be (if we let it)
+12 June 2012
 ---
-{% include JB/setup %}
 
 You need to stop thinking that [App.net] is a Twitter clone right now, because it's not. Think of the 'alpha' in alpha.app.net as indicating not only that what we see is an alpha version of their web app (which is powered by the much tech blog ignored API) but an alpha model and example of one of numerous ways to consume the API's data. What needs to happen is that [App.net]'s API becomes a high quality, developer friendly, secure 'social network in a box', which developers can use to build applications whom all have 'first class citizen' access to the user's information, posts, messages, relationships, privacy settings etc.
 
