@@ -78,7 +78,16 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), map[string]string { "name":"Gordon"})
+	content := make(map[string][]map[string]string)
+	for _, note := range notes {
+		thisNote := map[string]string{
+			"Title":note.Title,
+			"url":note.Uglyname,
+		}
+
+		content["notes"] = append(content["notes"], thisNote)
+	}
+	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), content)
 	fmt.Fprintf(w, rendered)
 }
 

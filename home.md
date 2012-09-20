@@ -1,3 +1,7 @@
 # This is a test
 
-{{name}}
+<ul>
+{{#notes}}
+<li><a href="note/{{url}}.html">{{Title}}</a></li>
+{{/notes}}
+</ul>
