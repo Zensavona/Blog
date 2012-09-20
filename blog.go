@@ -74,6 +74,7 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
 			rendered = mustache.RenderInLayout(note.Body, loadTemplate("note"), meta)
 		}
 	}
+
 	if len(rendered) == 0 {
 		fmt.Fprintf(w, "404 page not found")
 	}
@@ -83,15 +84,22 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	content := make(map[string][]map[string]string)
-	for _, note := range notes {
-		thisNote := map[string]string{
-			"Title":note.Title,
-			"url":note.Uglyname,
-		}
+	//for _, note := range notes {
+	//	thisNote := map[string]string{
+	//		"Title":note.Title,
+	//		"url":note.Uglyname,
+	//	}
+	//	content["notes"] = append(content["notes"], thisNote)
+	//}
 
-		content["notes"] = append(content["notes"], thisNote)
-	}
-	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), content)
+	var data struct {
+        Notes []*Note
+    }
+
+    data.Notes = notes
+
+
+	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), data)
 	fmt.Fprintf(w, rendered)
 }
 
