@@ -78,7 +78,7 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), nil)
+	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), map[string]string { "name":"Gordon"})
 	fmt.Fprintf(w, rendered)
 }
 
