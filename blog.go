@@ -97,6 +97,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	r := mux.NewRouter()
+	http.Handle("/assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("./assets"))))
+	//http.Handle("/tmpfiles/", http.StripPrefix("/tmpfiles/", http.FileServer(http.Dir("/tmp"))))
     r.HandleFunc("/", indexHandler)
     r.HandleFunc(notePath+"{note}", noteHandler)
     http.Handle("/", r)
