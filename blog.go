@@ -67,7 +67,11 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
     var rendered string
 	for _, note := range notes {
 		if note.Uglyname == title {
-			rendered = mustache.RenderInLayout(note.Body, loadTemplate("note"), nil)
+			meta := map[string]string{
+				"Title":note.Title,
+				"Date":note.Date,
+			}
+			rendered = mustache.RenderInLayout(note.Body, loadTemplate("note"), meta)
 		}
 	}
 	if len(rendered) == 0 {
