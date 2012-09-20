@@ -5,6 +5,7 @@ import (
 	"path"
 	"github.com/russross/blackfriday"
 	"github.com/hoisie/mustache"
+	"code.google.com/p/gorilla/mux"
 	"io/ioutil"
 	"strings"
 	"net/http"
@@ -19,8 +20,13 @@ type Note struct {
 
 const sep = "---"
 const notePath = "/note/"
+const lenPath = len(notePath)
 
 var notes = loadNotes()
+
+// less than ideal
+var home, _ = ioutil.ReadFile("home.md")
+var homeMarkup = string(blackfriday.MarkdownCommon(home))
 
 func loadNotes() []Note {
 	files, _ := ioutil.ReadDir("notes/")
@@ -55,17 +61,31 @@ func loadTemplate(name string) string {
 }
 
 func noteHandler(w http.ResponseWriter, r *http.Request) {
-    //request := "why-you-should-never-use-godaddy-ever-again"
-	note := loadPost(r.URL.Path[1:])
-	rendered := mustache.RenderInLayout(note.Body, loadTemplate("note"), nil)
+    vars := mux.Vars(r)
+    title := vars["note"]
+    title = strings.Replace(title, ".html", "", -1)
+    var rendered string
+	for _, note := range notes {
+		if note.Uglyname == title {
+			rendered = mustache.RenderInLayout(note.Body, loadTemplate("note"), nil)
+		}
+	}
+	if len(rendered) == 0 {
+		fmt.Fprintf(w, "404 page not found")
+	}
+	
     fmt.Fprintf(w, rendered)
 }
 
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), nil)
+	fmt.Fprintf(w, rendered)
+}
+
 func main() {
-	//http.HandleFunc(notePath, noteHandler)
-	//http.HandleFunc("/", indexHandler)
-    //http.ListenAndServe(":8080", nil)
-    for _, note := range notes {
-    	fmt.Println(note.Uglyname)
-    }
+	r := mux.NewRouter()
+    r.HandleFunc("/", indexHandler)
+    r.HandleFunc(notePath+"{note}", noteHandler)
+    http.Handle("/", r)
+    http.ListenAndServe(":8080", nil)
 }
