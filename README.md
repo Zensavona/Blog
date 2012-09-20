@@ -1,7 +1,7 @@
 Blog
 ====
 
-An extremely simple web blog application, written in Go.
+An extremely simple web blog application, written in Go. It uses markdown for notes (blog posts) and Moustache for templating.
 
 Don't for a minute think that this is stable, completely working or secure in any way - I am building this purely as a personal learning exercise.
 
