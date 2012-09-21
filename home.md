@@ -3,9 +3,9 @@
 
 ### Notes:
 <ul>
-{{#notes}}
-<li><a href="note/{{url}}.html">{{Title}}</a></li>
-{{/notes}}
+{{#Notes}}
+<li><a href="note/{{Url}}.html">{{Title}}</a></li>
+{{/Notes}}
 </ul>
 
 ### About me:
@@ -15,6 +15,5 @@ Raw denim tumblr yr next level, tattooed gluten-free pour-over letterpress hoodi
 - [github.com/zensavona](http://github.com/zensavona/)
 - [alpha.app.net/zen](https://alpha.app.net/zen)
 - [twitter.com/zensavona](http://twitter.com/zensavona/)
-
 
 Powered by [Markdown](http://daringfireball.net/projects/markdown/) for content, [Moustache](http://mustache.github.com/) for templates and [Go](http://golang.org/) for everything else (and Supervisor makes sure everyone does what they are supposed to)

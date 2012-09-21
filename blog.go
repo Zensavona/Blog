@@ -12,7 +12,7 @@ import (
 )
 
 type Note struct {
-	Uglyname string
+	Url string
 	Title string
 	Date string
 	Body string
@@ -50,8 +50,8 @@ func loadPost(title string) *Note {
     i := strings.LastIndex(content, sep)
     headers := content[sepLength:i]
     body := content[i+sepLength+1:]
-    html := blackfriday.MarkdownCommon([]byte(body))
     meta := strings.Split(headers, "\n")
+    html := blackfriday.MarkdownCommon([]byte(body))
     return &Note{title, meta[1], meta[2], string(html)}
 }
 
@@ -66,12 +66,8 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
     title = strings.Replace(title, ".html", "", -1)
     var rendered string
 	for _, note := range notes {
-		if note.Uglyname == title {
-			meta := map[string]string{
-				"Title":note.Title,
-				"Date":note.Date,
-			}
-			rendered = mustache.RenderInLayout(note.Body, loadTemplate("note"), meta)
+		if note.Url == title {
+			rendered = mustache.RenderInLayout(note.Body, loadTemplate("note"), note)
 		}
 	}
 
@@ -83,22 +79,10 @@ func noteHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	content := make(map[string][]map[string]string)
-	//for _, note := range notes {
-	//	thisNote := map[string]string{
-	//		"Title":note.Title,
-	//		"url":note.Uglyname,
-	//	}
-	//	content["notes"] = append(content["notes"], thisNote)
-	//}
-
 	var data struct {
-        Notes []*Note
+        Notes []Note
     }
-
     data.Notes = notes
-
-
 	rendered := mustache.RenderInLayout(homeMarkup, loadTemplate("home"), data)
 	fmt.Fprintf(w, rendered)
 }
@@ -106,7 +90,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 	http.Handle("/assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("./assets"))))
-	//http.Handle("/tmpfiles/", http.StripPrefix("/tmpfiles/", http.FileServer(http.Dir("/tmp"))))
     r.HandleFunc("/", indexHandler)
     r.HandleFunc(notePath+"{note}", noteHandler)
     http.Handle("/", r)

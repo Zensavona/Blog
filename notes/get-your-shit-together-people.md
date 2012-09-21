@@ -5,21 +5,19 @@ Get your shit together, people
 
 > Disclaimer: I live in Brisbane, Australia. My only real window to what is happening in silicon valley is HN and the blogs of various founders and VCs from the valley. If my assumptions are completely wrong, please do let me know.
 
-## Shitty products
+### Shitty products
 
 Right now in the world there are so many talented and skilled developers - why are so many of us working on such shitty, menial ideas? I mean there are exceptions - but it also seems like there are <i>so many</i> people working on <i>really stupid things</i>. No, I <i>don't</i> want to sign up to your bootstrap themed product which looks like it was thrown together in a week and performs no valuable purpose to my daily life (which I can't replicate more elegantly with a text file). It seems like we are becoming so intent on 'shipping' <i>something</i>, that we are willing to throw <i>anything</i> out there and hope that by chance, we make something that <i>someone, somewhere</i> wants.
 
 [This article] by [Marius Andra] really struck a chord with me and somewhat inspired this post.
 
-> A friend of mine is starting what can only be described as a combination of Facebook, Groupon, LinkedIn and Foursquare. He’s super excited and hasn’t talked to any potential customers yet. 
-
+> A friend of mine is starting what can only be described as a combination of Facebook, Groupon, LinkedIn and Foursquare. He’s super excited and hasn’t talked to any potential customers yet.
 > I know a guy whose startup pivots twice a year, each time hoping to solve a problem that’s not really there. Now they’re cloning Yammer. 
-
 > Some other guys had an idea, received validation from two potential clients, raised funding, hired a lot of people, built a product and discovered nobody really wants to pay for it.
 
 Here's a thought, spend more time on something which you know is great, and launch it with polish. Don't ship your <i>shitty, half baked product</i> - launch it well and give people something to gasp at. Until then, keep thinking.
 
-## The startup "romantic era"
+### The startup "romantic era"
 
 We are treating business like it's a fucking <i>art form</i>. If you haven't already seen this, read a couple of posts on [Double Stealth], if this sounds anything like you, go find a mirror, look into it for a long time and seriously thing about what you doing.
 
